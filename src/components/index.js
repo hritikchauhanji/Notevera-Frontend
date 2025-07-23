@@ -1,0 +1,25 @@
+import NavbarMain from "./Header/NavbarMain";
+import HeroMain from "./HeroSection/HeroMain";
+import HeroGradient from "./HeroSection/HeroGradient";
+import Login from "./Auth/Login";
+import Register from "./Auth/Register";
+import Footer from "./Footer/Footer";
+import InputBox from "./Common/InputBox";
+import DashboardLayout from "./Dashboard/DashboardLayout";
+import ProfilePage from "./Dashboard/ProfilePage";
+import DashboardHome from "./Dashboard/DashboardHome";
+import EditProfilePage from "./Dashboard/EditProfile";
+import CheckEmailPage from "./Auth/CheckEmailPage";
+import VerifyPage from "./Auth/VerifyPage";
+import { default as NotesUploadForm } from "./Dashboard/NotesUploadForm";
+// import ViewNotes from "./Dashboard/ViewNotes";
+import SubjectList from "./Dashboard/SubjectList";
+import NoteViewer from "./Dashboard/NoteViewer";
+import AddCourse from "./Course/AddCourse";
+import AddSemester from "./Semester/AddSemester";
+import AddSubject from "./Subject/AddSubject";
+import ChangePasswordPage from "./Dashboard/ChangePassword";
+import ForgotPasswordPage from "./Auth/ForgotPasswordPage";
+import ResetPasswordPage from "./Auth/ResetPasswordPage"
+import AdminNote from "./Dashboard/AdminNote";
+export { NavbarMain, HeroMain, HeroGradient, Login, Register, Footer, InputBox, DashboardLayout, ProfilePage, DashboardHome, EditProfilePage, CheckEmailPage, VerifyPage, NotesUploadForm, SubjectList, NoteViewer, AddCourse, AddSemester, AddSubject, ChangePasswordPage, ForgotPasswordPage, ResetPasswordPage, AdminNote };
