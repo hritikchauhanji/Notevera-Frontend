@@ -27,9 +27,12 @@ export default function NoteViewer() {
                 const fetchedNote = res?.data?.data;
 
                 if (fetchedNote && fetchedNote.fileDetails?.uploadFileName) {
-                    const baseUrl = import.meta.env.VITE_API_BASE_URL.replace(/\/$/, '');
-                    const filePath = fetchedNote.fileDetails.uploadFileName.replace(/^\//, '');
-                    fetchedNote.fileDetails.fileUrl = `${baseUrl}/files/${filePath}`;
+                    // This for - dev
+                    // const baseUrl = import.meta.env.VITE_API_BASE_URL.replace(/\/$/, '');
+                    // const filePath = fetchedNote.fileDetails.uploadFileName.replace(/^\//, '');
+                    // fetchedNote.fileDetails.fileUrl = `${baseUrl}/files/${filePath}`;
+                    // This for - prod
+                    fetchedNote.fileDetails.fileUrl = fetchedNote.fileDetails.uploadFileName;
                     console.log("🧾 File URL:", fetchedNote.fileDetails.fileUrl);
                 }
 
