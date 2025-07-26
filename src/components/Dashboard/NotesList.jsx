@@ -50,11 +50,11 @@ export default function NotesList({ subject, onBack }) {
                     </div>
                 </div>
             ) : notes.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
                     {notes.map((note) => (
                         <div
                             key={note.id}
-                            className="flex flex-col justify-between h-full bg-white dark:bg-slate-800 shadow-md border border-gray-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-lg transition"
+                            className="flex flex-col justify-between h-full dark:bg-slate-800 shadow-md border border-gray-200 dark:border-slate-700 rounded-lg p-5 hover:shadow-lg transition"
                         >
                             <div>
                                 <h3 className="text-lg font-bold text-indigo-700 dark:text-indigo-400 mb-1">

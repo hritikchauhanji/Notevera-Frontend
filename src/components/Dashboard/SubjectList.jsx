@@ -79,7 +79,7 @@ export default function SubjectList() {
                         </div>
                     </div>
                 ) : subjects.length > 0 ? (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-stretch">
+                    <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
                         {subjects.map((subject) => (
                             <div
                                 key={subject.id}
