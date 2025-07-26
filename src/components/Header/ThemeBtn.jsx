@@ -19,7 +19,7 @@ export default function ThemeBtn() {
     return (
         <label className="flex items-center cursor-pointer">
 
-            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            <span className="text-sm font-medium text-gray-700 dark:text-gray-300 sm:hidden md:block">
                 {themeMode === "dark" ? "Dark Mode" : "Light Mode"}
             </span>
             <div className='relative ml-3'>
