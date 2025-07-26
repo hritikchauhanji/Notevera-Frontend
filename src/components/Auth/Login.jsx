@@ -57,11 +57,14 @@ export default function LoginPage() {
         <div className="min-h-screen flex items-center justify-center dark:bg-slate-950 px-4">
             <form
                 onSubmit={handleSubmit}
-                className="dark:bg-slate-950 dark:border-slate-700 dark:border bg-white p-8 rounded-lg shadow-xl w-full max-w-4xl"
+                className="dark:bg-slate-950 dark:border-slate-700 dark:border border border-gray-300 p-8 rounded-lg shadow-xl w-full max-w-4xl"
             >
                 <div className="flex flex-col gap-2">
-                    <h2 className="text-3xl font-bold mb-6 text-center text-gray-800 dark:text-white">
+                    <h2 className="md:block sm:hidden text-3xl font-bold mb-6 text-center text-gray-800 dark:text-white">
                         Login to Notevera
+                    </h2>
+                    <h2 className="sm:block md:hidden text-3xl font-bold mb-6 text-center text-gray-800 dark:text-white">
+                        Login to NV
                     </h2>
 
                     <InputBox
