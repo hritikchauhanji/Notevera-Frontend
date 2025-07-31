@@ -10,7 +10,7 @@ const axiosInstance = axios.create({
     },
 });
 
-const publicRoutes = ['/auth', '/auth/login', '/auth/register', '/course/active', '/semester/active', '/home/verify', '/home/send-email-reset', '/home/reset-pswd'];
+const publicRoutes = ['/auth', '/auth/login', '/auth/register', '/course/active', '/semester/active', '/home/verify', '/home/send-email-reset', '/home/reset-pswd', '/auth/verify'];
 
 axiosInstance.interceptors.request.use((config) => {
     const token = localStorage.getItem('token');
