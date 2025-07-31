@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react';
 import { getAllNotesAdminBySubject } from '../../api/note';
+import { summarizeNote } from '../../api/ai';
 import { FiArrowLeft, FiEye, FiUser } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export default function NotesList({ subject, onBack }) {
     const [notes, setNotes] = useState([]);
     const [isFetching, setIsFetching] = useState(false);
+    const [loadingIds, setLoadingIds] = useState([]);
+    const [summaries, setSummaries] = useState({});
 
     useEffect(() => {
         (async () => {
@@ -20,6 +24,22 @@ export default function NotesList({ subject, onBack }) {
             }
         })();
     }, [subject]);
+
+    const handleSummarize = async (noteId) => {
+        try {
+            setLoadingIds(prev => [...prev, noteId]);
+            const res = await summarizeNote(noteId);
+            setSummaries(prev => ({
+                ...prev,
+                [noteId]: res,
+            }));
+        } catch (err) {
+            console.error(err);
+            toast.error("Failed to summarize note.");
+        } finally {
+            setLoadingIds(prev => prev.filter(id => id !== noteId));
+        }
+    };
 
     return (
         <div className="max-w-5xl mx-auto px-4">
@@ -64,19 +84,42 @@ export default function NotesList({ subject, onBack }) {
                                     {note.description || 'No description provided.'}
                                 </p>
                                 {note.createdByFirstName && (
-                                    <p className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1 mb-4">
+                                    <p className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1 mb-2">
                                         <FiUser className="text-base" />
                                         Created by: {note.createdByFirstName} {note.createdByLastName}
                                     </p>
                                 )}
+
+
                             </div>
+
                             <Link
                                 to={`/dashboard/notes/${note.id}`}
-                                className="inline-flex items-center justify-center text-sm px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition w-full"
+                                className="mt-4 inline-flex items-center justify-center text-sm px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition w-full"
                             >
                                 <FiEye className="mr-2" />
                                 View Note
                             </Link>
+
+                            {/* 👇 Moved summarize button below view note */}
+                            <button
+                                onClick={() => handleSummarize(note.id)}
+                                disabled={loadingIds.includes(note.id)}
+                                className="mt-2 text-sm px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition w-full"
+                            >
+                                {loadingIds.includes(note.id) ? 'Summarizing...' : 'Summarize by AI Agent'}
+                            </button>
+
+                            {/* 👇 Show AI summary */}
+                            {summaries[note.id] && (
+                                <div className="mt-4 p-4 bg-gray-100 dark:bg-gray-800 rounded-lg shadow border border-indigo-300 dark:border-indigo-700">
+                                    <h4 className="text-base font-bold text-indigo-700 dark:text-indigo-400 mb-2">AI Summary</h4>
+                                    <div
+                                        className="prose prose-sm max-w-none dark:prose-invert"
+                                        dangerouslySetInnerHTML={{ __html: summaries[note.id] }}
+                                    />
+                                </div>
+                            )}
                         </div>
                     ))}
                 </div>
